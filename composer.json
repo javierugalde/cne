@@ -1,6 +1,7 @@
 {
     "name": "aasanchez/cne",
     "description": "This package has the objective to consult the CNE for Venezuelan Citizens",
+    "keywords": ["CNE","venezuelan"],
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "^6.2"
@@ -9,8 +10,12 @@
     "authors": [
         {
             "name": "Alexis Sanchez",
-            "email": "aasanchez@gmail.com"
+            "email": "aasanchez@gmail.com",
+            "homepage": "https://github.com/aasanchez"
         }
     ],
+    "autoload": {
+        "psr-4": {"CNE\\": "src/"}
+    },
     "minimum-stability": "dev"
 }
