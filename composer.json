@@ -1,0 +1,16 @@
+{
+    "name": "aasanchez/cne",
+    "description": "This package has the objective to consult the CNE for Venezuelan Citizens",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexis Sanchez",
+            "email": "aasanchez@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
