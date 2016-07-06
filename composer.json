@@ -17,5 +17,5 @@
     "autoload": {
         "psr-4": {"CNE\\": "src/"}
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
