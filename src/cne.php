@@ -27,7 +27,8 @@ class Cne
                 array_push($data,$line);
             }
         }
-        var_dump($data);
+        return $data;
 
     }
+
 }
