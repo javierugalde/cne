@@ -7,3 +7,4 @@
 [![Latest Unstable Version](https://poser.pugx.org/aasanchez/cne/v/unstable)](https://packagist.org/packages/aasanchez/cne)
 [![License](https://poser.pugx.org/aasanchez/cne/license)](https://packagist.org/packages/aasanchez/cne)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/b090a912-009b-4b51-a9c0-0095dbdd38da/mini.png)](https://insight.sensiolabs.com/projects/b090a912-009b-4b51-a9c0-0095dbdd38da)
+[![Build Status](https://travis-ci.org/aasanchez/cne.svg?branch=master)](https://travis-ci.org/aasanchez/cne)
