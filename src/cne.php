@@ -1,14 +1,16 @@
 <?php
 
-namespace CNE;
+namespace aasanchez;
 
-use Goutte\Client;
+use GuzzleHttp\Client;
 
 class Cne
 {
     private $citizenship;
 
     private $dniNumber;
+
+    private $info;
 
     function __construct()
     {
@@ -33,26 +35,10 @@ class Cne
     public function search()
     {
         $client = new Client();
-
-        $crawler = $client->request('GET', 'http://www.cne.gob.ve/consultamovil?tipo=RE&nacionalidad=&cedula=15777118');
-
-        return $crawler;
+        $this->info = json_encode($client->request('GET', 'http://www.cne.gob.ve/consultamovil?tipo=RE&nacionalidad=V&cedula=15777118'));
     }
 
-
-    private function cleanDni($dni)
-    {
-        return preg_replace('/[^0-9]/', '', $dni);
+    public function getBody(){
+        return $this->info;
     }
-
-    private function completeDni($dni)
-    {
-        return str_pad($dni, 8, "0", STR_PAD_LEFT);
-    }
-
-    private function cleanCitizenship($citizenship)
-    {
-        return preg_replace('/[^VEJ]/', '', substr($citizenship, 0, 1));
-    }
-
 }
