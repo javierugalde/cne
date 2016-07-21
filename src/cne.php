@@ -12,33 +12,22 @@ class Cne
 
     private $info;
 
-    function __construct()
+    function __construct($citizenship, $dniNumber)
     {
-        $a = func_get_args();
-        $i = func_num_args();
-        if (method_exists($this, $f = '__construct'.$i)) {
-            call_user_func_array(array($this, $f), $a);
-        }
-    }
-
-    function __construct1($a1)
-    {
-
-    }
-
-    function __construct2($a1, $a2)
-    {
-        $this->citizenship = $a1;
-        $this->dniNumber = $a2;
+        $this->citizenship = $citizenship;
+        $this->dniNumber = $dniNumber;
     }
 
     public function search()
     {
         $client = new Client();
-        $this->info = json_encode($client->request('GET', 'http://www.cne.gob.ve/consultamovil?tipo=RE&nacionalidad=V&cedula=15777118'));
-    }
-
-    public function getBody(){
-        return $this->info;
+        $this->info = $client->request('GET', 'http://www.cne.gob.ve/consultamovil', [
+            'query' => [
+                'tipo' => 'RE',
+                'nacionalidad' => $this->citizenship,
+                'cedula' => $this->dniNumber
+            ]
+        ]);
+        return json_decode($this->info->getBody());
     }
 }
