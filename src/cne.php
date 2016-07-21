@@ -28,6 +28,6 @@ class Cne
                 'cedula' => $this->dniNumber
             ]
         ]);
-        return json_decode($this->info->getBody());
+        return $this->info->getBody();
     }
 }
