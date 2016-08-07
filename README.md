@@ -1,5 +1,4 @@
 
-
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/aasanchez/cne/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/aasanchez/cne/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/aasanchez/cne/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/aasanchez/cne/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/aasanchez/cne/v/stable)](https://packagist.org/packages/aasanchez/cne)
@@ -24,9 +23,9 @@ composer require aasanchez/cne
 ## Usage
 
 Create a CNE Client instance:
+```php
+use aasanchez\Cne;
 
-use Goutte\Client;
-
-$client = new Client();
-Make requests with the request() method:
-
+$elector = new Cne("V", "15777118");
+echo $elector->search()."\n";
+```

@@ -1,7 +1,7 @@
 {
     "name": "aasanchez/cne",
     "description": "This package has the objective to consult the CNE for Venezuelan Citizens",
-    "keywords": ["CNE","venezuelan","aasanchez"],
+    "keywords": ["CNE","venezuelan"],
     "type": "library",
     "require": {
         "php" : ">=5.6.0",

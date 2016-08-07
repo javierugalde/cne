@@ -12,7 +12,7 @@ class Cne
 
     private $info;
 
-    function __construct($citizenship, $dniNumber)
+    public function __construct($citizenship, $dniNumber)
     {
         $this->citizenship = $citizenship;
         $this->dniNumber = $dniNumber;
@@ -28,6 +28,6 @@ class Cne
                 'cedula' => $this->dniNumber
             ]
         ]);
-        return $this->info->getBody();
+        return utf8_encode($this->info->getBody());
     }
 }

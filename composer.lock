@@ -191,12 +191,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-message.git",
-                "reference": "d0aabc038f1f3ff665dfe1e9673bcd0df609c681"
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-message/zipball/d0aabc038f1f3ff665dfe1e9673bcd0df609c681",
-                "reference": "d0aabc038f1f3ff665dfe1e9673bcd0df609c681",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
                 "shasum": ""
             },
             "require": {
@@ -233,7 +233,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-03 19:47:37"
+            "time": "2016-08-06 14:39:51"
         }
     ],
     "packages-dev": [
