@@ -62,7 +62,7 @@ class Cne
         $elector["no-definidos"]["paglin"] = $this->clear($data->paglin);
         $elector["no-definidos"]["cap_centro"] = $this->clear($data->cap_centro);
         $elector["no-definidos"]["cap_edo"] = $this->clear($data->cap_edo);
-        $elector["no-definidos"]["cap_num"] = $this->clear($data->cap_num);
+        $elector["no-definidos"]["cap_num"] = $this->clear($data->cap_mun);
         $elector["no-definidos"]["cap_par"] = $this->clear($data->cap_par);
         $elector["no-definidos"]["cap_dir"] = $this->clear($data->cap_dir);
         $elector["no-definidos"]["cap_horario"] = $this->clear($data->cap_horario);
