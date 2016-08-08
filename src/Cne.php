@@ -43,19 +43,20 @@ class Cne
         $data = json_decode($data);
         var_dump($data);
         $elector = [];
+        $elector["Estatus"]['Mensaje'] = ($this->clear($data->st) == "" ?  "Esta cedula de identidad se encuentra inscrita en el registro electoral" : $this->clear($data->st));
+        $elector["Estatus"]["objecion"] = ($this->clear($data->st) != "" ?  $this->clear($data->obj): "Sin Objecion");
         $elector["datos-personales"]["cedula"] = $this->clear($data->ci);
         $elector["datos-personales"]["nombre(s)"] = $this->clear($data->nb1." ".$data->nb2);
         $elector["datos-personales"]["apellidos(s)"] = $this->clear($data->ap1." ".$data->ap2);
         $elector["datos-personales"]["nacimiento"] = $this->clear($data->fecha_nacimiento);
+        $elector["informacion-electoral"]["situacion"] = ($this->clear($data->rec) == "" ? "Ciudadano Registrado en el Registro Electoral" : $this->clear($data->rec));
+
         $elector["informacion-electoral"]["centro-de-votacion"]["institucion"] = $this->clear($data->cv);
         $elector["informacion-electoral"]["centro-de-votacion"]["direccion"] = $this->clear($data->dir);
         $elector["informacion-electoral"]["centro-de-votacion"]["parroquia"] = $this->parroquia($this->clear($data->par));
         $elector["informacion-electoral"]["centro-de-votacion"]["municipio"] = $this->municipio($this->clear($data->mcp));
         $elector["informacion-electoral"]["centro-de-votacion"]["estado"] = $this->estado($this->clear($data->stdo));
         $elector["informacion-electoral"]["servicio-electoral"]["estado"] = $this->estado($this->clear($data->servicio));
-        $elector["no-definidos"]["st"] = $this->clear($data->st);
-        $elector["no-definidos"]["obj"] = $this->clear($data->obj);
-        $elector["no-definidos"]["rec"] = $this->clear($data->rec);
         $elector["no-definidos"]["obs"] = $this->clear($data->obs);
         $elector["no-definidos"]["votelec"] = $this->clear($data->votelec);
         $elector["no-definidos"]["mvota"] = $this->clear($data->mvota);
@@ -76,7 +77,7 @@ class Cne
         $newString = filter_var($string, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
         $newString = strtolower($newString);
         $newString = ucfirst($newString);
-
+        $newString = $this->puntos($newString);
         return $newString;
     }
 
@@ -93,5 +94,10 @@ class Cne
     private function estado($parroquia)
     {
         return str_replace("Edo. ", "", $parroquia);
+    }
+
+    private function puntos($parroquia)
+    {
+        return str_replace("... ", "", $parroquia);
     }
 }
