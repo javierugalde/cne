@@ -41,32 +41,30 @@ class Cne
     {
 
         $data = json_decode($data);
-        var_dump($data);
         $elector = [];
-        $elector["Estatus"]['Mensaje'] = ($this->clear($data->st) == "" ?  "Esta cedula de identidad se encuentra inscrita en el registro electoral" : $this->clear($data->st));
+        $elector["Estatus"]['mensaje'] = ($this->clear($data->st) != "" ?  $this->clear($data->st) : "Esta cedula de identidad se encuentra inscrita en el registro electoral");
         $elector["Estatus"]["objecion"] = ($this->clear($data->st) != "" ?  $this->clear($data->obj): "Sin Objecion");
         $elector["datos-personales"]["cedula"] = $this->clear($data->ci);
         $elector["datos-personales"]["nombre(s)"] = $this->clear($data->nb1." ".$data->nb2);
         $elector["datos-personales"]["apellidos(s)"] = $this->clear($data->ap1." ".$data->ap2);
         $elector["datos-personales"]["nacimiento"] = $this->clear($data->fecha_nacimiento);
         $elector["informacion-electoral"]["situacion"] = ($this->clear($data->rec) == "" ? "Ciudadano Registrado en el Registro Electoral" : $this->clear($data->rec));
-
         $elector["informacion-electoral"]["centro-de-votacion"]["institucion"] = $this->clear($data->cv);
         $elector["informacion-electoral"]["centro-de-votacion"]["direccion"] = $this->clear($data->dir);
         $elector["informacion-electoral"]["centro-de-votacion"]["parroquia"] = $this->parroquia($this->clear($data->par));
         $elector["informacion-electoral"]["centro-de-votacion"]["municipio"] = $this->municipio($this->clear($data->mcp));
         $elector["informacion-electoral"]["centro-de-votacion"]["estado"] = $this->estado($this->clear($data->stdo));
         $elector["informacion-electoral"]["servicio-electoral"]["estado"] = $this->estado($this->clear($data->servicio));
+        $elector["cap"]["centro"] = $this->clear($data->cap_centro);
+        $elector["cap"]["estado"] = $this->clear($data->cap_edo);
+        $elector["cap"]["municipio"] = $this->clear($data->cap_mun);
+        $elector["cap"]["parroquia"] = $this->clear($data->cap_par);
+        $elector["cap"]["direccion"] = $this->clear($data->cap_dir);
+        $elector["cap"]["horario"] = $this->clear($data->cap_horario);
         $elector["no-definidos"]["obs"] = $this->clear($data->obs);
         $elector["no-definidos"]["votelec"] = $this->clear($data->votelec);
         $elector["no-definidos"]["mvota"] = $this->clear($data->mvota);
         $elector["no-definidos"]["paglin"] = $this->clear($data->paglin);
-        $elector["no-definidos"]["cap_centro"] = $this->clear($data->cap_centro);
-        $elector["no-definidos"]["cap_edo"] = $this->clear($data->cap_edo);
-        $elector["no-definidos"]["cap_num"] = $this->clear($data->cap_mun);
-        $elector["no-definidos"]["cap_par"] = $this->clear($data->cap_par);
-        $elector["no-definidos"]["cap_dir"] = $this->clear($data->cap_dir);
-        $elector["no-definidos"]["cap_horario"] = $this->clear($data->cap_horario);
         $elector["ultima-actualizacion"] = $this->clear($data->fecha);
 
         return json_encode($elector);
