@@ -43,7 +43,7 @@ class Cne
         $data = json_decode($data);
         $elector = [];
         $elector["Estatus"]['mensaje'] = ($this->clear($data->st) != "" ?  $this->clear($data->st) : "Esta cedula de identidad se encuentra inscrita en el registro electoral");
-        $elector["Estatus"]["objecion"] = ($this->clear($data->st) != "" ?  $this->clear($data->obj): "Sin Objecion");
+        $elector["Estatus"]["objecion"] = ($this->clear($data->obj) != "" ?  $this->clear($data->obj): "Sin Objecion");
         $elector["datos-personales"]["cedula"] = $this->clear($data->ci);
         $elector["datos-personales"]["nombre(s)"] = $this->clear($data->nb1." ".$data->nb2);
         $elector["datos-personales"]["apellidos(s)"] = $this->clear($data->ap1." ".$data->ap2);
