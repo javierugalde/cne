@@ -32,9 +32,12 @@ class Cne
                 ],
             ]
         );
-        $data = $this->info->getBody();
 
-        return $this->formatter($data);
+        return $this->info->getBody();
+    }
+
+    public function searchPretty(){
+        return $this->formatter($this->info->getBody());
     }
 
     private function formatter($data)
