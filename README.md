@@ -6,7 +6,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/aasanchez/cne/v/unstable)](https://packagist.org/packages/aasanchez/cne)
 [![License](https://poser.pugx.org/aasanchez/cne/license)](https://packagist.org/packages/aasanchez/cne)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/b090a912-009b-4b51-a9c0-0095dbdd38da/mini.png)](https://insight.sensiolabs.com/projects/b090a912-009b-4b51-a9c0-0095dbdd38da)
-[![Build Status](https://travis-ci.org/aasanchez/cne.svg?branch=master)](https://travis-ci.org/aasanchez/cne)
+[![StyleCI](https://styleci.io/repos/62661448/shield?branch=master)](https://styleci.io/repos/62661448)
 
 NOT READY FOR PRODUCTION, THIS PACKAGE ITS UNDER DEVELOP
 
@@ -18,7 +18,9 @@ This Package that allows you to get CNE information in a json format.
 
 Add aasanchez/cne as a require dependency in your composer.json file:
 
+```
 composer require aasanchez/cne
+```
 
 ## Usage
 
@@ -26,6 +28,6 @@ Create a CNE Client instance:
 ```php
 use aasanchez\Cne;
 
-$elector = new Cne("V", "15777118");
-echo $elector->search()."\n";
+$elector = new Cne('V', '15777118');
+echo $elector->search().'\n';
 ```
