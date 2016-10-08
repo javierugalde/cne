@@ -20,15 +20,27 @@ class Cne
 
     public function search()
     {
+        $this->connect();
+        return $this->info->getBody();
+    }
+
+    public function searchPretty()
+    {
+        $this->connect();
+        return $this->formatter($this->info->getBody());
+    }
+
+    private function connect()
+    {
         $client = new Client();
         $this->info = $client->request(
             'GET',
             'http://www.cne.gob.ve/consultamovil',
             [
                 'query' => [
-                    'tipo'         => 'RE',
+                    'tipo' => 'RE',
                     'nacionalidad' => $this->citizenship,
-                    'cedula'       => $this->dniNumber,
+                    'cedula' => $this->dniNumber,
                 ],
             ]
         );
@@ -36,49 +48,44 @@ class Cne
         return $this->info->getBody();
     }
 
-    public function searchPretty()
-    {
-        return $this->formatter($this->info->getBody());
-    }
-
     private function formatter($data)
     {
         $data = json_decode($data);
         $elector = [];
         $elector['estatus'] = [
-            'mensaje'  => ($this->clear($data->st) != '' ? $this->clear($data->st) : 'Esta cedula de identidad se encuentra inscrita en el registro electoral'),
+            'mensaje' => ($this->clear($data->st) != '' ? $this->clear($data->st) : 'Esta cedula de identidad se encuentra inscrita en el registro electoral'),
             'objecion' => ($this->clear($data->obj) != '' ? $this->clear($data->obj) : 'Sin Objecion'),
         ];
         $elector['datos-personales'] = [
-            'cedula'       => $this->clear($data->ci),
-            'nombre(s)'    => $this->clear($data->nb1.' '.$data->nb2),
-            'apellidos(s)' => $this->clear($data->ap1.' '.$data->ap2),
-            'nacimiento'   => $this->clear($data->fecha_nacimiento),
+            'cedula' => $this->clear($data->ci),
+            'nombre(s)' => $this->clear($data->nb1 . ' ' . $data->nb2),
+            'apellidos(s)' => $this->clear($data->ap1 . ' ' . $data->ap2),
+            'nacimiento' => $this->clear($data->fecha_nacimiento),
         ];
         $elector['informacion-electoral'] = [
-            'situacion'          => ($this->clear($data->rec) == '' ? 'Ciudadano Registrado en el Registro Electoral' : $this->clear($data->rec)),
+            'situacion' => ($this->clear($data->rec) == '' ? 'Ciudadano Registrado en el Registro Electoral' : $this->clear($data->rec)),
             'centro-de-votacion' => [
-                'institucion'    => $this->clear($data->cv),
-                'direccion'      => $this->clear($data->dir),
-                'parroquia'      => $this->parroquia($this->clear($data->par)),
-                'municipio'      => $this->municipio($this->clear($data->mcp)),
-                'estado'         => $this->estado($this->clear($data->stdo)),
-                'servicio'       => $this->estado($this->clear($data->servicio)),
+                'institucion' => $this->clear($data->cv),
+                'direccion' => $this->clear($data->dir),
+                'parroquia' => $this->parroquia($this->clear($data->par)),
+                'municipio' => $this->municipio($this->clear($data->mcp)),
+                'estado' => $this->estado($this->clear($data->stdo)),
+                'servicio' => $this->estado($this->clear($data->servicio)),
             ],
         ];
         $elector['cap'] = [
-            'centro'    => $this->clear($data->cap_centro),
-            'estado'    => $this->clear($data->cap_edo),
+            'centro' => $this->clear($data->cap_centro),
+            'estado' => $this->clear($data->cap_edo),
             'municipio' => $this->clear($data->cap_mun),
             'parroquia' => $this->clear($data->cap_par),
             'direccion' => $this->clear($data->cap_dir),
-            'horario'   => $this->clear($data->cap_horario),
+            'horario' => $this->clear($data->cap_horario),
         ];
         $elector['no-definidos'] = [
-            'obs'     => $this->clear($data->obs),
+            'obs' => $this->clear($data->obs),
             'votelec' => $this->clear($data->votelec),
-            'mvota'   => $this->clear($data->mvota),
-            'paglin'  => $this->clear($data->paglin),
+            'mvota' => $this->clear($data->mvota),
+            'paglin' => $this->clear($data->paglin),
         ];
         $elector['ultima-actualizacion'] = $this->clear($data->fecha);
 
