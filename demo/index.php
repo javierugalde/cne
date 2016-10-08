@@ -6,4 +6,4 @@ use aasanchez\Cne;
 $elector = new Cne('V', '15777118');
 $elector->search();
 header('Content-Type: application/json');
-print_r($elector->searchPretty());
+echo $elector->searchPretty();
