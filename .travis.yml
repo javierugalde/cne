@@ -1,6 +1,0 @@
-language: php
-before_script:
-  - composer install --dev --no-interaction
-php:
-  - '5.6'
-  - '7.0'
