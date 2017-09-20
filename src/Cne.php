@@ -29,7 +29,7 @@ class Cne
     {
         $this->connect();
 
-        return $this->formatter($this->info->getBody());
+        return $this->formatter($this->info->getBody()).PHP_EOL;
     }
 
     private function connect()
